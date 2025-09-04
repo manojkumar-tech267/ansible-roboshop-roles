@@ -11,7 +11,7 @@
 - name: systemd setup 
   include_role:
     name: common 
-    tasks_from: systemmd_setup 
+    tasks_from: systemd_setup 
 
 - name: copying mongo.repo 
   ansible.builtin.copy:
