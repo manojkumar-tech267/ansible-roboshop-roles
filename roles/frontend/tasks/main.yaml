@@ -15,22 +15,22 @@
     state: started
     enabled: yes
 
-- name: removing default content 
+- name: remove html directory
   ansible.builtin.file:
     path: /usr/share/nginx/html
-    state: absent 
+    state: absent
 
-- name: creating html directory
+- name: create html directory
   ansible.builtin.file:
     path: /usr/share/nginx/html
-    state: directory 
+    state: directory
 
-- name: downloading frontend code 
+- name: download frontend code
   ansible.builtin.get_url:
     url: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
     dest: /tmp/frontend.zip
 
-- name: extracting frontend code 
+- name: unzip frontend code
   ansible.builtin.unarchive:
     src: /tmp/frontend.zip
     dest: /usr/share/nginx/html
@@ -41,11 +41,10 @@
     path: /etc/nginx/nginx.conf
     state: absent
 
-- name: copying nginx.conf file 
+- name: copy roboshop nginx conf
   ansible.builtin.template:
-    src: nginx.conf.j2 
+    src: nginx.conf.j2
     dest: /etc/nginx/nginx.conf
   notify:
     - Restart nginx
   
-
