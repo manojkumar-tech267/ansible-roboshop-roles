@@ -1,3 +1,4 @@
 CART_HOST: cart.cloudwithmanoj.online
 USER_HOST: user.cloudwithmanoj.online 
 RABBIMQ_HOST: rabbitmq.cloudwithmanoj.online
+COMPONENT: payment
