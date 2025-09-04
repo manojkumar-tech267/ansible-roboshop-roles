@@ -34,12 +34,12 @@
   ansible.builtin.unarchive:
     src: /tmp/frontend.zip
     dest: /usr/share/nginx/html
-    remote_src: yes
 
 - name: copy nginx.conf file 
   ansible.builtin.copy:
     src: nginx.conf 
     dest: /etc/nginx/nginx.conf 
+    remote_src: yes
 
 - name: restart nginx 
   ansible.builtin.service:
