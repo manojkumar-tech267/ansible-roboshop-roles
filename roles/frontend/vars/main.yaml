@@ -1,5 +1,5 @@
 CATALOGUE_HOST: catalogue.cloudwithmanoj.online 
-USER_HOST: user.cloudwithmanoj.online 
-CART_HOST: cart.cloudwithmanoj.online
-SHIPPING_HOST: shipping.cloudwithmanoj.online 
-PAYMENT_HOST: payment.cloudwithmanoj.online
+# USER_HOST: user.cloudwithmanoj.online 
+# CART_HOST: cart.cloudwithmanoj.online
+# SHIPPING_HOST: shipping.cloudwithmanoj.online 
+# PAYMENT_HOST: payment.cloudwithmanoj.online
