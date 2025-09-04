@@ -1,19 +1,7 @@
-- name: disabling Nginx 
-  ansible.builtin.command: dnf module disable nginx -y
-
-- name: enabling nginx:1.24
-  ansible.builtin.command: dnf module enable nginx:1.24 -y
-
-- name: install Nginx 
-  ansible.builtin.package:
-    name: nginx 
-    state: present 
-
-- name: start and enable Nginx 
-  ansible.builtin.service:
-    name: nginx 
-    state: started 
-    enabled: yes 
+- name: nginx setup 
+  include_role:
+    name: common 
+    tasks_from: nginx-setup
 
 - name: removing default content 
   ansible.builtin.file:
@@ -37,11 +25,10 @@
     remote_src: yes
 
 - name: copying nginx.conf file 
-  ansible.builtin.copy:
-    src: nginx.conf 
+  ansible.builtin.template:
+    src: nginx.conf.j2 
     dest: /etc/nginx/nginx.conf
+  notify:
+    - Restart nginx
+  
 
-- name: restart nginx 
-  ansible.builtin.service:
-    name: nginx 
-    state: restarted 

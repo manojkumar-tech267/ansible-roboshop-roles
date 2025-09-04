@@ -1,68 +1,17 @@
-- name: installing maven 
-  ansible.builtin.package:
-    name: maven 
-    state: installed 
+- name: maven setup 
+  include_role:
+    name: common 
+    tasks_from: maven_setup
 
-- name: installing  PyMySQL and cryptography 
-  ansible.builtin.pip:
-    name: "{{ item }}"
-    state: present 
-  loop:
-  -  PyMySQL
-  - cryptography
+- name: app setup 
+  include_role:
+    name: common 
+    tasks_from: app-setup
 
-- name: creating app directory
-  ansible.builtin.file:
-    path: /app 
-    state: directory 
-
-- name: creating roboshop user 
-  ansible.builtin.user:
-    name: roboshop 
-    system: yes 
-    shell: /sbin/nologin
-    home: /app 
-
-- name: downloading shipping code 
-  ansible.builtin.get_url:
-    url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
-    dest: /tmp/shipping.zip
-
-- name: extracting shipping code 
-  ansible.builtin.unarchive:
-    src: /tmp/shipping.zip
-    dest: /app 
-    remote_src: yes
-
-- name: downloading java dependencies 
-  ansible.builtin.command: mvn clean package 
-  args:
-    chdir: /app 
-
-- name: rename file name 
-  ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
-  args:
-    chdir: /app 
-
-- name: copy shipping.service file 
-  ansible.builtin.copy:
-    src: shipping.service 
-    dest: /etc/systemd/system/shipping.service
-
-- name: reload shipping 
-  ansible.builtin.systemd_service:
-    daemon_reload: true 
-
-- name: start and enable shipping 
-  ansible.builtin.service:
-    name: shipping 
-    state: started 
-    enabled: yes 
-
-- name: install mysql 
-  ansible.builtin.package:
-    name: mysql 
-    state: installed 
+- name: systemd setup 
+  include_role:
+    name: common 
+    tasks_from: systemd_setup
 
 - name: import data 
   tags:
