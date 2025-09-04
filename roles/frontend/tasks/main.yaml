@@ -3,6 +3,12 @@
     name: common 
     tasks_from: nginx-setup
 
+- name: start and enable nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: yes
+
 - name: removing default content 
   ansible.builtin.file:
     path: /usr/share/nginx/html
@@ -28,7 +34,7 @@
   ansible.builtin.file:
     path: /etc/nginx/nginx.conf
     state: absent
-    
+
 - name: copying nginx.conf file 
   ansible.builtin.template:
     src: nginx.conf.j2 
