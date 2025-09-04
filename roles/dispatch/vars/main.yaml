@@ -1,1 +1,2 @@
 RABBIMQ_HOST: rabbitmq.cloudwithmanoj.online
+COMPONENT: dispatch
