@@ -1,3 +1,2 @@
 REDIS_HOST: redis.cloudwithmanoj.online 
 CATALOGUE_HOST: catalogue.cloudwithmanoj.online
-COMPONENT: cart

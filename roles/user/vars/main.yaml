@@ -1,3 +1,2 @@
 REDIS_HOST: redis.cloudwithmanoj.online 
 MONGODB_HOST: mongodb.cloudwithmanoj.online
-COMPONENT: user
